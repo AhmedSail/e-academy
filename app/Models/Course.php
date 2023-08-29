@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     use HasFactory;
+    protected $guarded=[];
+    function teacher() {
+        return $this->belongsTo(Teacher::class);
+    }
+
+    function students() {
+        return $this->belongsToMany(User::class, 'student_course');
+    }
+    function getNameAttribute()
+    {
+        return $this->{'name_'.app()->currentLocale()};
+    }
 }

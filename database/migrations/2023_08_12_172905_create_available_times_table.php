@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('available_times', function (Blueprint $table) {
             $table->id();
             $table->foreignId('teacher_id');
-            $table->timestamp('time');
+            $table->date('day');
+            $table->double('price',10,2);
+            $table->time('time_from');
+            $table->time('time_to');
             $table->boolean('status')->default(1);
             $table->timestamps();
         });
